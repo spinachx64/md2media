@@ -1,0 +1,201 @@
+/* mdnice 经典风格 —— 仿 https://editor.mdnice.com 默认主题
+ * 所有选择器都以 #nice 开头，juice 内联时只作用于文章本体，
+ * 数值尽量用 px（微信会保留内联 px），不用 rem/变量（内联后会失效）。 */
+
+#nice {
+  font-size: 16px;
+  color: #3f3f3f;
+  line-height: 1.80;
+  letter-spacing: 0.05em;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  word-break: break-word;
+}
+
+/* 段落 */
+#nice p {
+  margin: 16px 8px;
+  font-size: 16px;
+  color: #3f3f3f;
+  line-height: 1.80;
+}
+
+/* 一级标题 */
+#nice h1 {
+  margin: 40px 8px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #3f3f3f;
+}
+
+/* 二级标题：左侧色条 + 底部细线，mdnice 经典样式 */
+#nice h2 {
+  margin: 36px 8px 20px;
+  padding-left: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #3f3f3f;
+  border-left: 4px solid #2b6cb0;
+  line-height: 1.4;
+}
+
+/* 三级标题 */
+#nice h3 {
+  margin: 28px 8px 16px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #3f3f3f;
+}
+
+/* 四级标题 */
+#nice h4 {
+  margin: 24px 8px 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3f3f3f;
+}
+
+/* 五级标题 */
+#nice h5 {
+  margin: 22px 8px 12px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #3f3f3f;
+}
+
+/* 六级标题 */
+#nice h6 {
+  margin: 20px 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #3f3f3f;
+}
+
+/* 引用块 */
+#nice blockquote {
+  margin: 20px 8px;
+  padding: 12px 16px;
+  border-left: 4px solid #2b6cb0;
+  background: #f7f8fb;
+  color: #6a6a6a;
+  font-size: 15px;
+}
+#nice blockquote p {
+  margin: 0;
+  color: #6a6a6a;
+}
+
+/* 无序 / 有序列表 */
+#nice ul,
+#nice ol {
+  margin: 16px 8px;
+  padding-left: 24px;
+  color: #3f3f3f;
+}
+#nice li {
+  margin: 6px 0;
+  line-height: 1.80;
+}
+
+/* 行内代码 */
+#nice p code,
+#nice li code,
+#nice h2 code,
+#nice h3 code {
+  margin: 0 2px;
+  padding: 2px 6px;
+  font-size: 14px;
+  color: #2b6cb0;
+  background: #eef3fb;
+  border-radius: 4px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+/* 代码块 */
+#nice pre {
+  margin: 20px 8px;
+  padding: 16px;
+  overflow-x: auto;
+  background: #282c34;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+#nice pre code {
+  /* 换行不靠 <br>（微信会删），也不靠 white-space（微信不认）：
+   * render.mjs 把每行代码包成 <span style="display:block">，块级元素天然独占一行。
+   * 所以这里 <code> 不能用 display:-webkit-box —— 它会把子 span 横向排列，反而毁掉换行。 */
+  padding: 0;
+  color: #abb2bf;
+  background: transparent;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+/* 表格 */
+#nice table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 14px;
+  width: auto;
+}
+#nice th,
+#nice td {
+  padding: 8px 14px;
+  border: 1px solid #dfdfdf;
+}
+#nice th {
+  background: #f2f4f8;
+  font-weight: bold;
+  color: #3f3f3f;
+}
+
+/* 链接 */
+#nice a {
+  color: #2b6cb0;
+  text-decoration: none;
+  border-bottom: 1px solid #2b6cb0;
+}
+
+/* 加粗 / 斜体 / 删除线 / 分割线 / 图片 */
+#nice strong {
+  color: #3f3f3f;
+  font-weight: bold;
+}
+#nice em {
+  font-style: italic;
+  color: #3f3f3f;
+}
+#nice del {
+  text-decoration: line-through;
+  color: #9a9a9a;
+}
+#nice hr {
+  margin: 32px 8px;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+#nice img {
+  max-width: 100%;
+  border-radius: 6px;
+  display: block;
+  margin: 20px auto;
+}
+
+/* highlight.js —— One Dark 配色，配合上面的深色代码块 */
+#nice .hljs-comment,
+#nice .hljs-quote { color: #5c6370; font-style: italic; }
+#nice .hljs-keyword,
+#nice .hljs-selector-tag { color: #c678dd; }
+#nice .hljs-string,
+#nice .hljs-attr { color: #98c379; }
+#nice .hljs-number,
+#nice .hljs-literal { color: #d19a66; }
+#nice .hljs-title,
+#nice .hljs-title.function_,
+#nice .hljs-section { color: #61afef; }
+#nice .hljs-type,
+#nice .hljs-class .hljs-title { color: #e6c07b; }
+#nice .hljs-variable,
+#nice .hljs-template-variable { color: #e06c75; }
+#nice .hljs-built_in,
+#nice .hljs-builtin-name { color: #56b6c2; }

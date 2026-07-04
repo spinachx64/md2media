@@ -1,0 +1,183 @@
+/* 石墨橙 —— 高对比但克制，适合实践复盘 / 性能优化 / 工程总结。
+ * 所有选择器都以 #nice 开头；固定 px / hex，便于 juice 内联到微信公众号。 */
+
+#nice {
+  font-size: 16px;
+  color: #30343b;
+  line-height: 1.80;
+  letter-spacing: 0.04em;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  word-break: break-word;
+}
+
+#nice p {
+  margin: 16px 8px;
+  font-size: 16px;
+  color: #30343b;
+  line-height: 1.80;
+}
+
+#nice h1 {
+  margin: 40px 8px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #171a20;
+}
+
+#nice h2 {
+  margin: 36px 8px 20px;
+  padding-left: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #171a20;
+  border-left: 4px solid #ea580c;
+  line-height: 1.4;
+}
+
+#nice h3 {
+  margin: 28px 8px 16px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #171a20;
+}
+
+#nice h4 {
+  margin: 24px 8px 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #171a20;
+}
+
+#nice h5 {
+  margin: 22px 8px 12px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #171a20;
+}
+
+#nice h6 {
+  margin: 20px 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #171a20;
+}
+
+#nice blockquote {
+  margin: 20px 8px;
+  padding: 12px 16px;
+  border-left: 4px solid #ea580c;
+  background: #fff4ed;
+  color: #667085;
+  font-size: 15px;
+}
+#nice blockquote p {
+  margin: 0;
+  color: #667085;
+}
+
+#nice ul,
+#nice ol {
+  margin: 16px 8px;
+  padding-left: 24px;
+  color: #30343b;
+}
+#nice li {
+  margin: 6px 0;
+  line-height: 1.80;
+}
+
+#nice p code,
+#nice li code,
+#nice h2 code,
+#nice h3 code {
+  margin: 0 2px;
+  padding: 2px 6px;
+  font-size: 14px;
+  color: #c2410c;
+  background: #ffedd5;
+  border-radius: 4px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+#nice pre {
+  margin: 20px 8px;
+  padding: 16px;
+  overflow-x: auto;
+  background: #2d2926;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+#nice pre code {
+  padding: 0;
+  color: #e4ddd5;
+  background: transparent;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+#nice table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 14px;
+  width: auto;
+}
+#nice th,
+#nice td {
+  padding: 8px 14px;
+  border: 1px solid #d9dee7;
+}
+#nice th {
+  background: #f1f5f9;
+  font-weight: bold;
+  color: #171a20;
+}
+
+#nice a {
+  color: #0f766e;
+  text-decoration: none;
+  border-bottom: 1px solid #0f766e;
+}
+
+#nice strong {
+  color: #171a20;
+  font-weight: bold;
+}
+#nice em {
+  font-style: italic;
+  color: #30343b;
+}
+#nice del {
+  text-decoration: line-through;
+  color: #8b9099;
+}
+#nice hr {
+  margin: 32px 8px;
+  border: none;
+  border-top: 1px solid #d9dee7;
+}
+#nice img {
+  max-width: 100%;
+  border-radius: 6px;
+  display: block;
+  margin: 20px auto;
+}
+
+/* 柔和深色代码块：石墨底色配低饱和橙绿蓝，不使用刺眼纯白。 */
+#nice .hljs-comment,
+#nice .hljs-quote { color: #8c8580; font-style: italic; }
+#nice .hljs-keyword,
+#nice .hljs-selector-tag { color: #f0a36f; }
+#nice .hljs-string,
+#nice .hljs-attr { color: #a8c97f; }
+#nice .hljs-number,
+#nice .hljs-literal { color: #e7bf82; }
+#nice .hljs-title,
+#nice .hljs-title.function_,
+#nice .hljs-section { color: #8fb7d8; }
+#nice .hljs-type,
+#nice .hljs-class .hljs-title { color: #d9c58a; }
+#nice .hljs-variable,
+#nice .hljs-template-variable { color: #df9a8b; }
+#nice .hljs-built_in,
+#nice .hljs-builtin-name { color: #8fc7ba; }

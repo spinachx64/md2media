@@ -1,0 +1,39 @@
+{
+  "name": "mdwx",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "本地 Markdown → 微信公众号 HTML 排版工具",
+  "license": "MIT",
+  "keywords": [
+    "markdown",
+    "wechat",
+    "wechat-official-account",
+    "html",
+    "css-inline"
+  ],
+  "files": [
+    "build.mjs",
+    "render.mjs",
+    "serve.mjs",
+    "themes/",
+    "syntax-test.md",
+    "palette-preview.html"
+  ],
+  "bin": {
+    "mdwx": "./build.mjs"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node serve.mjs",
+    "list": "node build.mjs --list"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "highlight.js": "^11.11.1",
+    "juice": "^12.1.1",
+    "marked": "^18.0.5",
+    "marked-highlight": "^2.2.4"
+  }
+}

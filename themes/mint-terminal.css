@@ -1,0 +1,183 @@
+/* 薄荷终端 —— 清爽、开发者工具感，适合 CLI / DevOps / 效率工具文章。
+ * 所有选择器都以 #nice 开头；固定 px / hex，便于 juice 内联到微信公众号。 */
+
+#nice {
+  font-size: 16px;
+  color: #33403c;
+  line-height: 1.80;
+  letter-spacing: 0.04em;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  word-break: break-word;
+}
+
+#nice p {
+  margin: 16px 8px;
+  font-size: 16px;
+  color: #33403c;
+  line-height: 1.80;
+}
+
+#nice h1 {
+  margin: 40px 8px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #17211f;
+}
+
+#nice h2 {
+  margin: 36px 8px 20px;
+  padding-left: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #17211f;
+  border-left: 4px solid #0f766e;
+  line-height: 1.4;
+}
+
+#nice h3 {
+  margin: 28px 8px 16px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #17211f;
+}
+
+#nice h4 {
+  margin: 24px 8px 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #17211f;
+}
+
+#nice h5 {
+  margin: 22px 8px 12px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #17211f;
+}
+
+#nice h6 {
+  margin: 20px 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #17211f;
+}
+
+#nice blockquote {
+  margin: 20px 8px;
+  padding: 12px 16px;
+  border-left: 4px solid #0f766e;
+  background: #edf8f4;
+  color: #64746f;
+  font-size: 15px;
+}
+#nice blockquote p {
+  margin: 0;
+  color: #64746f;
+}
+
+#nice ul,
+#nice ol {
+  margin: 16px 8px;
+  padding-left: 24px;
+  color: #33403c;
+}
+#nice li {
+  margin: 6px 0;
+  line-height: 1.80;
+}
+
+#nice p code,
+#nice li code,
+#nice h2 code,
+#nice h3 code {
+  margin: 0 2px;
+  padding: 2px 6px;
+  font-size: 14px;
+  color: #0f766e;
+  background: #e4f5ef;
+  border-radius: 4px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+#nice pre {
+  margin: 20px 8px;
+  padding: 16px;
+  overflow-x: auto;
+  background: #1e2f33;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+#nice pre code {
+  padding: 0;
+  color: #d4e2df;
+  background: transparent;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+#nice table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 14px;
+  width: auto;
+}
+#nice th,
+#nice td {
+  padding: 8px 14px;
+  border: 1px solid #cfe4dc;
+}
+#nice th {
+  background: #eaf7f2;
+  font-weight: bold;
+  color: #17211f;
+}
+
+#nice a {
+  color: #2563eb;
+  text-decoration: none;
+  border-bottom: 1px solid #2563eb;
+}
+
+#nice strong {
+  color: #17211f;
+  font-weight: bold;
+}
+#nice em {
+  font-style: italic;
+  color: #33403c;
+}
+#nice del {
+  text-decoration: line-through;
+  color: #87938f;
+}
+#nice hr {
+  margin: 32px 8px;
+  border: none;
+  border-top: 1px solid #cfe4dc;
+}
+#nice img {
+  max-width: 100%;
+  border-radius: 6px;
+  display: block;
+  margin: 20px auto;
+}
+
+/* 柔和深色代码块：降低黑白反差，保留终端感。 */
+#nice .hljs-comment,
+#nice .hljs-quote { color: #82928f; font-style: italic; }
+#nice .hljs-keyword,
+#nice .hljs-selector-tag { color: #8fd0c5; }
+#nice .hljs-string,
+#nice .hljs-attr { color: #a8d8a2; }
+#nice .hljs-number,
+#nice .hljs-literal { color: #e2bf8f; }
+#nice .hljs-title,
+#nice .hljs-title.function_,
+#nice .hljs-section { color: #8bbfe8; }
+#nice .hljs-type,
+#nice .hljs-class .hljs-title { color: #d9c78f; }
+#nice .hljs-variable,
+#nice .hljs-template-variable { color: #e0a1a8; }
+#nice .hljs-built_in,
+#nice .hljs-builtin-name { color: #83cfc4; }
