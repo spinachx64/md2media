@@ -1,13 +1,14 @@
 {
-  "name": "mdwx",
+  "name": "md2media",
   "version": "1.0.0",
   "type": "module",
-  "description": "本地 Markdown → 微信公众号 HTML 排版工具",
+  "description": "本地 Markdown → 多媒体平台排版工具，当前支持微信公众号 HTML",
   "license": "MIT",
   "keywords": [
     "markdown",
     "wechat",
     "wechat-official-account",
+    "media",
     "html",
     "css-inline"
   ],
@@ -15,12 +16,10 @@
     "build.mjs",
     "render.mjs",
     "serve.mjs",
-    "themes/",
-    "syntax-test.md",
-    "palette-preview.html"
+    "themes/"
   ],
   "bin": {
-    "mdwx": "./build.mjs"
+    "md2media": "./build.mjs"
   },
   "scripts": {
     "build": "node build.mjs",

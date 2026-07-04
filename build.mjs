@@ -33,7 +33,7 @@ function parseArgs(argv) {
   return args;
 }
 
-const HELP = `mdwx — 本地 Markdown → 微信公众号 HTML 排版工具
+const HELP = `md2media — 本地 Markdown → 微信公众号 HTML 排版工具
 
 用法:
   node build.mjs <input.md> [选项]

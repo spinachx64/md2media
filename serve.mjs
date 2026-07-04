@@ -88,7 +88,7 @@ const PAGE = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>mdwx 预览</title>
+<title>md2media 预览</title>
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; font-family: -apple-system, "PingFang SC", sans-serif; display: flex; height: 100vh; background: #f0f2f5; }
@@ -106,7 +106,7 @@ const PAGE = `<!doctype html>
 </head>
 <body>
   <div id="side">
-    <h1>mdwx 预览</h1>
+    <h1>md2media 预览</h1>
     <div>
       <label>文章</label>
       <select id="file"></select>
@@ -175,7 +175,7 @@ loadLists().then(renderNow);
 </html>`;
 
 server.listen(port, () => {
-  console.log(`mdwx 预览: http://localhost:${port}`);
+  console.log(`md2media 预览: http://localhost:${port}`);
   console.log(`文章目录: ${dir}`);
   console.log(`可用主题: ${listThemes().join(', ')}`);
 });
