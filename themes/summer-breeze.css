@@ -1,0 +1,183 @@
+/* 夏日海风 —— 清凉、明亮但不轻飘，适合夏季长文 / 工具教程 / 产品更新。
+ * 所有选择器都以 #nice 开头；固定 px / hex，便于 juice 内联到微信公众号。 */
+
+#nice {
+  font-size: 16px;
+  color: #2f3f46;
+  line-height: 1.80;
+  letter-spacing: 0.04em;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  word-break: break-word;
+}
+
+#nice p {
+  margin: 16px 8px;
+  font-size: 16px;
+  color: #2f3f46;
+  line-height: 1.80;
+}
+
+#nice h1 {
+  margin: 40px 8px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #12323a;
+}
+
+#nice h2 {
+  margin: 36px 8px 20px;
+  padding-left: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #12323a;
+  border-left: 4px solid #0891b2;
+  line-height: 1.4;
+}
+
+#nice h3 {
+  margin: 28px 8px 16px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #12323a;
+}
+
+#nice h4 {
+  margin: 24px 8px 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #12323a;
+}
+
+#nice h5 {
+  margin: 22px 8px 12px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #12323a;
+}
+
+#nice h6 {
+  margin: 20px 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #12323a;
+}
+
+#nice blockquote {
+  margin: 20px 8px;
+  padding: 12px 16px;
+  border-left: 4px solid #0891b2;
+  background: #eefcff;
+  color: #5f747b;
+  font-size: 15px;
+}
+#nice blockquote p {
+  margin: 0;
+  color: #5f747b;
+}
+
+#nice ul,
+#nice ol {
+  margin: 16px 8px;
+  padding-left: 24px;
+  color: #2f3f46;
+}
+#nice li {
+  margin: 6px 0;
+  line-height: 1.80;
+}
+
+#nice p code,
+#nice li code,
+#nice h2 code,
+#nice h3 code {
+  margin: 0 2px;
+  padding: 2px 6px;
+  font-size: 14px;
+  color: #0e7490;
+  background: #e6f7fb;
+  border-radius: 4px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+#nice pre {
+  margin: 20px 8px;
+  padding: 16px;
+  overflow-x: auto;
+  background: #18343d;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+#nice pre code {
+  padding: 0;
+  color: #d8edf1;
+  background: transparent;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+#nice table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 14px;
+  width: auto;
+}
+#nice th,
+#nice td {
+  padding: 8px 14px;
+  border: 1px solid #c9e5ea;
+}
+#nice th {
+  background: #eaf8fb;
+  font-weight: bold;
+  color: #12323a;
+}
+
+#nice a {
+  color: #0284c7;
+  text-decoration: none;
+  border-bottom: 1px solid #0284c7;
+}
+
+#nice strong {
+  color: #12323a;
+  font-weight: bold;
+}
+#nice em {
+  font-style: italic;
+  color: #2f3f46;
+}
+#nice del {
+  text-decoration: line-through;
+  color: #879aa0;
+}
+#nice hr {
+  margin: 32px 8px;
+  border: none;
+  border-top: 1px solid #c9e5ea;
+}
+#nice img {
+  max-width: 100%;
+  border-radius: 6px;
+  display: block;
+  margin: 20px auto;
+}
+
+/* 清凉深色代码块：海蓝底色配低饱和青、绿、浅黄，避免高亮过刺眼。 */
+#nice .hljs-comment,
+#nice .hljs-quote { color: #8da4aa; font-style: italic; }
+#nice .hljs-keyword,
+#nice .hljs-selector-tag { color: #8bd7e8; }
+#nice .hljs-string,
+#nice .hljs-attr { color: #a7d99b; }
+#nice .hljs-number,
+#nice .hljs-literal { color: #e5c889; }
+#nice .hljs-title,
+#nice .hljs-title.function_,
+#nice .hljs-section { color: #7fc7ee; }
+#nice .hljs-type,
+#nice .hljs-class .hljs-title { color: #d8d58f; }
+#nice .hljs-variable,
+#nice .hljs-template-variable { color: #e6a4ad; }
+#nice .hljs-built_in,
+#nice .hljs-builtin-name { color: #8cd9ca; }
