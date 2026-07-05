@@ -7,7 +7,7 @@
 //
 // 示例:
 //   node build.mjs ../mcp3.md                       产出 mcp3.html（同目录）
-//   node build.mjs ../mcp3.md --theme mint-terminal
+//   node build.mjs ../mcp3.md --theme summer-breeze
 //   node build.mjs ../mcp3.md --copy                直接复制到剪贴板（macOS）
 import fs from 'node:fs';
 import path from 'node:path';
@@ -15,7 +15,7 @@ import { spawnSync } from 'node:child_process';
 import { render, listThemes } from './render.mjs';
 
 function parseArgs(argv) {
-  const args = { _: [], theme: 'mint-terminal', out: null, stdout: false, copy: false, list: false };
+  const args = { _: [], theme: 'summer-breeze', out: null, stdout: false, copy: false, list: false };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     switch (a) {
@@ -40,7 +40,7 @@ const HELP = `md2media — 本地 Markdown → 微信公众号 HTML 排版工具
   node build.mjs --list
 
 选项:
-  -t, --theme <名字>   指定主题（默认 mint-terminal）
+  -t, --theme <名字>   指定主题（默认 summer-breeze）
   -o, --out <文件>     输出文件路径（默认与输入同名 .html）
   --stdout             输出到标准输出，不写文件
   -c, --copy           渲染后直接复制到剪贴板（macOS pbcopy）
@@ -49,7 +49,7 @@ const HELP = `md2media — 本地 Markdown → 微信公众号 HTML 排版工具
 
 示例:
   node build.mjs ../mcp3.md
-  node build.mjs ../mcp3.md --theme mint-terminal --copy
+  node build.mjs ../mcp3.md --theme summer-breeze --copy
 `;
 
 // macOS: 把 HTML 作为富文本写入剪贴板，粘贴进公众号即带样式。
