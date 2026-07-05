@@ -2,27 +2,24 @@
 // CLI: 把 Markdown 转成微信公众号可粘贴的 HTML
 //
 // 用法:
-//   node build.mjs <input.md> [--theme <名字>] [--out <文件>] [--stdout] [--copy]
+//   node build.mjs <input.md> [--theme <名字>] [--stdout]
 //   node build.mjs --list                 列出所有可用主题
 //
 // 示例:
-//   node build.mjs ../mcp3.md                       产出 mcp3.html（同目录）
+//   node build.mjs ../mcp3.md                       直接复制到剪贴板（macOS）
 //   node build.mjs ../mcp3.md --theme summer-breeze
-//   node build.mjs ../mcp3.md --copy                直接复制到剪贴板（macOS）
 import fs from 'node:fs';
-import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { render, listThemes } from './render.mjs';
 
 function parseArgs(argv) {
-  const args = { _: [], theme: 'summer-breeze', out: null, stdout: false, copy: false, list: false };
+  const args = { _: [], theme: 'summer-breeze', stdout: false, list: false };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     switch (a) {
       case '--theme': case '-t': args.theme = argv[++i]; break;
-      case '--out': case '-o': args.out = argv[++i]; break;
       case '--stdout': args.stdout = true; break;
-      case '--copy': case '-c': args.copy = true; break;
+      case '--copy': case '-c': break; // 兼容旧命令；复制现在是默认行为。
       case '--list': case '-l': args.list = true; break;
       case '--help': case '-h': args.help = true; break;
       default:
@@ -41,15 +38,13 @@ const HELP = `md2media — 本地 Markdown → 微信公众号 HTML 排版工具
 
 选项:
   -t, --theme <名字>   指定主题（默认 summer-breeze）
-  -o, --out <文件>     输出文件路径（默认与输入同名 .html）
-  --stdout             输出到标准输出，不写文件
-  -c, --copy           渲染后直接复制到剪贴板（macOS pbcopy）
+  --stdout             输出到标准输出，不写入剪贴板
   -l, --list           列出所有可用主题
   -h, --help           显示帮助
 
 示例:
   node build.mjs ../mcp3.md
-  node build.mjs ../mcp3.md --theme summer-breeze --copy
+  node build.mjs ../mcp3.md --theme summer-breeze
 `;
 
 // macOS: 把 HTML 作为富文本写入剪贴板，粘贴进公众号即带样式。
@@ -89,23 +84,16 @@ function main() {
 
   if (args.stdout) { process.stdout.write(html); return; }
 
-  if (args.copy) {
-    if (process.platform !== 'darwin') {
-      console.error('--copy 目前只支持 macOS。请用 --out 产出文件后手动复制。');
-      process.exit(1);
-    }
-    if (copyHtmlToClipboard(html)) {
-      console.log('已复制到剪贴板（富文本），可直接粘贴进公众号编辑器。');
-    } else {
-      console.error('复制失败，改用文件输出。');
-      process.exit(1);
-    }
-    return;
+  if (process.platform !== 'darwin') {
+    console.error('默认复制富文本目前只支持 macOS。其他系统请使用 --stdout 输出 HTML。');
+    process.exit(1);
   }
-
-  const out = args.out || path.join(path.dirname(input), path.basename(input).replace(/\.md$/i, '') + '.html');
-  fs.writeFileSync(out, html, 'utf8');
-  console.log(`已生成: ${out}\n主题: ${args.theme}\n在浏览器打开后全选复制，粘贴进公众号即可。`);
+  if (copyHtmlToClipboard(html)) {
+    console.log(`已复制到剪贴板（富文本）。\n主题: ${args.theme}\n可直接粘贴进公众号编辑器。`);
+  } else {
+    console.error('复制失败。可加 --stdout 输出 HTML，或使用本地预览服务复制。');
+    process.exit(1);
+  }
 }
 
 main();

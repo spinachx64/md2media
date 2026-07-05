@@ -5,8 +5,8 @@ CLI 用 `-t 主题名` 指定，预览页下拉里也会自动列出来。
 
 目前内置四套：
 
-- `mint-terminal.css`：默认主题，薄荷终端风格，适合 CLI / DevOps / 工具类文章。
-- `summer-breeze.css`：夏日海风风格，清凉明亮，适合夏季长文 / 工具教程 / 产品更新。
+- `summer-breeze.css`：默认主题，夏日海风风格，清凉明亮，适合夏季长文 / 工具教程 / 产品更新。
+- `mint-terminal.css`：薄荷终端风格，适合 CLI / DevOps / 工具类文章。
 - `graphite-orange.css`：石墨橙风格，适合实践复盘 / 性能优化 / 工程总结。
 - `mdnice-classic.css`：仿 mdnice 经典风格，冷色调。
 

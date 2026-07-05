@@ -23,20 +23,19 @@ npm install
 
 ```bash
 node build.mjs article.md
-node build.mjs article.md -t mint-terminal
-node build.mjs article.md -o out.html
-node build.mjs article.md --copy
+node build.mjs article.md -t summer-breeze
+node build.mjs article.md --stdout
 node build.mjs --list
 ```
+
+默认会把渲染后的富文本复制到剪贴板，直接粘贴进公众号编辑器即可。
 
 常用参数：
 
 | 参数 | 说明 | 默认 |
 | --- | --- | --- |
-| `-t, --theme <name>` | 指定主题 | `mint-terminal` |
-| `-o, --out <file>` | 输出文件 | 输入文件同名 `.html` |
+| `-t, --theme <name>` | 指定主题 | `summer-breeze` |
 | `--stdout` | 输出到标准输出 | - |
-| `-c, --copy` | 复制富文本到剪贴板，macOS | - |
 | `-l, --list` | 列出主题 | - |
 
 ### 本地预览
@@ -68,7 +67,8 @@ node serve.mjs --dir /path/to/articles
 
 内置主题：
 
-- `mint-terminal`：默认主题，薄荷终端风格
+- `summer-breeze`：默认主题，夏日海风风格
+- `mint-terminal`：薄荷终端风格
 - `graphite-orange`：石墨橙风格
 - `mdnice-classic`：经典蓝色风格
 

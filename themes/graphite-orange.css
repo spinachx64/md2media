@@ -75,6 +75,11 @@
   margin: 0;
   color: #667085;
 }
+/* 引用内含空行时会拆成多个 <p>，给后续段落一个上边距，
+   让空行在公众号里显示出来（juice 会把这条规则内联到第二段起的 p 上）。 */
+#nice blockquote p + p {
+  margin-top: 15px;
+}
 
 #nice ul,
 #nice ol {
