@@ -42,6 +42,19 @@ function buildMarked() {
     })
   );
   marked.setOptions({ gfm: true, breaks: true });
+
+  // 正文里写的字面标签（<br>、<style>、<script> 等）会被当行内 HTML 原样透传，
+  // 之后要么被 juice 当真标签处理（<style> 吞正文、<br> 变真换行），要么原样出现在
+  // 公众号里。marked 在 token 层其实分得清：软换行是 br token，字面标签是 html token。
+  // 这里只重写行内 html renderer 做转义，软换行走的是另一条 renderer 路径，仍是真换行。
+  marked.use({
+    renderer: {
+      html(token) {
+        const raw = typeof token === 'string' ? token : token.text;
+        return raw.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      },
+    },
+  });
   return marked;
 }
 

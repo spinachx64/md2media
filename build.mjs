@@ -47,12 +47,35 @@ const HELP = `md2media — 本地 Markdown → 微信公众号 HTML 排版工具
   node build.mjs ../mcp3.md --theme summer-breeze
 `;
 
+// 从渲染后的 HTML 里抽出纯文本，供剪贴板的 text/plain 那一份用。
+// 对应预览页的 $frame.innerText：块级元素之间要有换行，否则粘到记事本会连成一坨。
+// 代码块每行是 <span style="display:block">，块级元素闭合和 <br> 都算换行。
+function htmlToPlainText(html) {
+  return html
+    .replace(/<span\b[^>]*display:\s*block[^>]*>/gi, '\n') // 代码块每行独占一行
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/(p|div|h[1-6]|li|blockquote|tr|pre|section)>/gi, '\n') // 块级元素闭合后换行
+    .replace(/<[^>]+>/g, '') // 去掉其余标签
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, '&') // &amp; 最后解，避免把上面解出来的 & 二次处理
+    .replace(/\n{3,}/g, '\n\n') // 连续空行压到最多一个
+    .replace(/[ \t]+\n/g, '\n') // 行尾空白清掉
+    .trim();
+}
+
 // macOS: 把 HTML 作为富文本写入剪贴板，粘贴进公众号即带样式。
-// 走 osascript，set the clipboard to «class HTML»...，比 pbcopy 纯文本更可靠。
+// 同时写入 text/plain 一份，这样也能粘进记事本等纯文本编辑器。
+// 微信粘贴用 text/plain 判断原始换行、用 text/html 拿样式；只给一种会丢换行或粘不进。
+// 走 osascript 一次性写入 «class HTML» 和 string 两种类型，比 pbcopy 纯文本更可靠。
 function copyHtmlToClipboard(html) {
-  // 把 HTML 转成 hex，交给 AppleScript 以 HTML 类型写入剪贴板
   const hex = Buffer.from(html, 'utf8').toString('hex');
-  const script = `set the clipboard to «data HTML${hex}»`;
+  // AppleScript 字符串转义：反斜杠和双引号
+  const plain = htmlToPlainText(html).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+  const script = `set the clipboard to {«class HTML»:«data HTML${hex}», string:"${plain}"}`;
   const r = spawnSync('osascript', ['-e', script], { encoding: 'utf8' });
   return r.status === 0;
 }
