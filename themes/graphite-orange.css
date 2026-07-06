@@ -22,7 +22,7 @@
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  color: #171a20;
+  color: #ea580c;
 }
 
 #nice h2 {
@@ -30,7 +30,7 @@
   padding-left: 12px;
   font-size: 20px;
   font-weight: bold;
-  color: #171a20;
+  color: #ea580c;
   border-left: 4px solid #ea580c;
   line-height: 1.4;
 }
@@ -39,7 +39,7 @@
   margin: 28px 8px 16px;
   font-size: 17px;
   font-weight: bold;
-  color: #171a20;
+  color: #ea580c;
 }
 
 #nice h4 {
@@ -145,12 +145,12 @@
 }
 
 #nice strong {
-  color: #171a20;
+  color: #ea580c;
   font-weight: bold;
 }
 #nice em {
   font-style: italic;
-  color: #30343b;
+  color: #ea580c;
 }
 #nice del {
   text-decoration: line-through;
