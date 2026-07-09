@@ -61,6 +61,59 @@ writing/
 node serve.mjs --dir /path/to/articles
 ```
 
+## 作为 Skill 使用
+
+项目自带一个 Skill（`skill/SKILL.md`），让 Claude Code 或 Codex 在你说“把这篇文章转成公众号 HTML”时，自动调用 `build.mjs` 完成转换、选主题、复制富文本。
+
+### 推荐的目录结构
+
+建议把 `md2media` 项目直接放在你的写作目录下，文章和工具在一起，`serve.mjs` 默认的上层目录就是文章目录，开箱即用：
+
+```text
+writing/                    # 你的写作目录
+  article-a.md
+  article-b.md
+  md2media/                 # 本项目
+    build.mjs
+    serve.mjs
+    skill/
+      SKILL.md
+```
+
+Skill 也安装在这个写作目录里（项目级安装），这样只有在这个目录下工作时才会加载，不污染全局。
+
+### 在 Claude Code 中安装
+
+Claude Code 从工作目录的 `.claude/skills/<name>/SKILL.md` 加载项目级 Skill。在写作目录下建一个软链接指向项目自带的 skill 即可：
+
+```bash
+cd writing
+mkdir -p .claude/skills
+ln -s ../../md2media/skill .claude/skills/md2media
+```
+
+之后在写作目录里启动 `claude`，输入 `/md2media` 或直接说“把 article-a.md 转成公众号格式”，Skill 就会被触发。
+
+> 软链接的好处：项目更新 skill 后无需重新安装，改动自动生效。若不便用软链接（如 Windows），把 `md2media/skill` 整个目录复制成 `.claude/skills/md2media` 也可以。
+
+### 在 Codex 中安装
+
+Codex 从 `.codex/skills/<name>/SKILL.md` 加载 Skill（项目级放工作目录下，全局级放 `~/.codex/skills/`）。项目自带的 `skill/agents/openai.yaml` 已提供 Codex 所需的入口定义。项目级安装同样用软链接：
+
+```bash
+cd writing
+mkdir -p .codex/skills
+ln -s ../../md2media/skill .codex/skills/md2media
+```
+
+想全局可用（在任意目录都能调用），则链接到用户级目录：
+
+```bash
+ln -s /path/to/writing/md2media/skill ~/.codex/skills/md2media
+```
+
+安装后，在对话里让 Codex“用 md2media 把某篇文章转成公众号 HTML”即可。
+
 ## 平台支持
 
 | 平台 | 命令行一键复制 | 本地预览复制 |

@@ -148,5 +148,5 @@ node ../build.mjs ../../某篇文章.md -t my-theme
 | 行内代码 | `#nice p code` 那组（字色 + 底色） |
 
 ## 五、配套散件
-1. mdwx/themes/palette-preview.html：风格预览页
+1. md2media/themes/palette-preview.html：风格预览页
 2. markdown全语法测试文件，用来给palette-preview.html提供测试样本

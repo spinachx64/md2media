@@ -1,0 +1,4 @@
+interface:
+  display_name: "md2media"
+  short_description: "Build Markdown for WeChat HTML"
+  default_prompt: "Use $md2media to build a finished Markdown article for WeChat."

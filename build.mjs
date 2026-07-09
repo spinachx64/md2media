@@ -123,8 +123,8 @@ function copyHtmlToClipboardWindows(html) {
   const cfHtml = buildCfHtml(html);
   const plain = htmlToPlainText(html);
   const tmp = os.tmpdir();
-  const htmlFile = path.join(tmp, `mdwx-${process.pid}.htmlfmt`);
-  const textFile = path.join(tmp, `mdwx-${process.pid}.txt`);
+  const htmlFile = path.join(tmp, `md2media-${process.pid}.htmlfmt`);
+  const textFile = path.join(tmp, `md2media-${process.pid}.txt`);
 
   fs.writeFileSync(htmlFile, cfHtml, 'utf8');
   fs.writeFileSync(textFile, plain, 'utf8');
