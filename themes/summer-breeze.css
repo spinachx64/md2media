@@ -4,68 +4,81 @@
 #nice {
   font-size: 16px;
   color: #2f3f46;
-  line-height: 1.80;
-  letter-spacing: 0.04em;
+  /* mdnice 容器行高 1.5em、字间距 0，正文疏密由段落层单独定 1.8em/0.04em。 */
+  line-height: 1.5;
+  letter-spacing: 0em;
+  word-spacing: 0em;
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   word-break: break-word;
 }
 
+/* 段落：mdnice 用 margin:0 + padding:8px 0 撑段距（padding 不折叠，段距稳定 16px），
+   正文左右不留外边距（贴满版心），行高 1.8em、字间距 0.04em。 */
 #nice p {
-  margin: 16px 8px;
+  margin: 0;
+  padding: 8px 0;
   font-size: 16px;
   color: #2f3f46;
-  line-height: 1.80;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
 }
 
+/* mdnice 标题不做逐级递减，统一 margin:30px 0 15px、行高 1.5em，层级只靠字号区分。 */
 #nice h1 {
-  margin: 40px 8px 20px;
+  margin: 30px 0 15px;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
   color: #0891b2;
+  line-height: 1.5;
 }
 
 #nice h2 {
-  margin: 36px 8px 20px;
+  margin: 30px 0 15px;
   padding-left: 12px;
   font-size: 20px;
   font-weight: bold;
   color: #0891b2;
   border-left: 4px solid #0891b2;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 #nice h3 {
-  margin: 28px 8px 16px;
+  margin: 30px 0 15px;
   font-size: 17px;
   font-weight: bold;
   color: #0891b2;
+  line-height: 1.5;
 }
 
 #nice h4 {
-  margin: 24px 8px 14px;
+  margin: 30px 0 15px;
   font-size: 16px;
   font-weight: bold;
   color: #12323a;
+  line-height: 1.5;
 }
 
 #nice h5 {
-  margin: 22px 8px 12px;
+  margin: 30px 0 15px;
   font-size: 15px;
   font-weight: bold;
   color: #12323a;
+  line-height: 1.5;
 }
 
 #nice h6 {
-  margin: 20px 8px 12px;
+  margin: 30px 0 15px;
   font-size: 14px;
   font-weight: bold;
   color: #12323a;
+  line-height: 1.5;
 }
 
+/* 引用块：mdnice 用 margin:20px 0、padding:10px 20px，正文左右不留外边距。 */
 #nice blockquote {
-  margin: 20px 8px;
-  padding: 12px 16px;
+  margin: 20px 0;
+  padding: 10px 20px;
   border-left: 4px solid #0891b2;
   background: #eefcff;
   color: #5f747b;
@@ -73,6 +86,7 @@
 }
 #nice blockquote p {
   margin: 0;
+  padding: 8px 0;
   color: #5f747b;
 }
 /* 引用内含空行时会拆成多个 <p>，给后续段落一个上边距，
@@ -81,15 +95,18 @@
   margin-top: 15px;
 }
 
+/* 无序 / 有序列表：mdnice 用 margin:8px 0、padding-left:25px，正文左右不留外边距。 */
 #nice ul,
 #nice ol {
-  margin: 16px 8px;
-  padding-left: 24px;
+  margin: 8px 0;
+  padding-left: 25px;
   color: #2f3f46;
 }
+/* mdnice 列表项间距 5px，行高 1.8em、字间距 0.04em（与正文段落一致）。 */
 #nice li {
-  margin: 6px 0;
-  line-height: 1.80;
+  margin: 5px 0;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
 }
 
 #nice p code,
@@ -157,7 +174,7 @@
   color: #879aa0;
 }
 #nice hr {
-  margin: 32px 8px;
+  margin: 32px 0;
   border: none;
   border-top: 1px solid #c9e5ea;
 }
