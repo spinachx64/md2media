@@ -30,6 +30,25 @@ export function readTheme(name) {
   return fs.readFileSync(file, 'utf8');
 }
 
+function normalizeStrongDelimiterBoundaries(markdown) {
+  const normalizeText = (text) =>
+    text
+      .replace(/(\*\*[^*\n]+?[：:])\s+\*\*(?=\s)/g, '$1**')
+      .replace(/(\*\*[^*\n]+?[：:])\s+\*\*(?=[^\s\r\n])/g, '$1**&zwnj;')
+      .replace(/(\*\*[^*\n]+?[：:]\*\*)(?=[^\s\r\n])/g, '$1&zwnj;');
+
+  return markdown
+    .split(/(```[\s\S]*?```|~~~[\s\S]*?~~~)/g)
+    .map((block, i) => {
+      if (i % 2 === 1) return block;
+      return block
+        .split(/(`+[^`\n]*?`+)/g)
+        .map((part, j) => (j % 2 === 1 ? part : normalizeText(part)))
+        .join('');
+    })
+    .join('');
+}
+
 // 每次渲染新建实例，避免多次调用间状态污染
 function buildMarked() {
   const marked = new Marked(
@@ -112,13 +131,26 @@ function inlineTableAlign(html) {
   );
 }
 
+// 公众号后台粘贴时，容易把 <li><strong>标题</strong>：正文</li> 这种
+// “行内标签 + 裸文本”结构拆成两块，并把后半段包进块级 <section>，导致换行。
+// mdnice 的做法是让列表项内容整体位于同一个 section 里，这样 strong 和后续文本
+// 会作为同一个内容块进入公众号编辑器。
+function wrapListItemSectionContent(html) {
+  return html.replace(/(<li\b[^>]*>)([\s\S]*?)(<\/li>)/g, (m, open, content, close) => {
+    if (/<(?:ul|ol|section|p|blockquote|pre|table|h[1-6])\b/i.test(content)) return m;
+    return `${open}<section style="margin: 0; line-height: 1.80;">${content}</section>${close}`;
+  });
+}
+
 // 微信不认 <style> 和 class，juice 把 CSS 全部内联到 style="" 上。
 // 所有内容包一层 #nice，主题 CSS 也以 #nice 为作用域，避免污染。
 export function render(markdown, themeName = 'mint-terminal') {
   const marked = buildMarked();
-  let body = preserveCodeWhitespace(marked.parse(markdown));
+  let body = preserveCodeWhitespace(marked.parse(normalizeStrongDelimiterBoundaries(markdown)));
+  body = body.replace(/&zwnj;/g, '');
   body = replaceTaskCheckboxes(body);
   body = inlineTableAlign(body); // juice 之前把表格 align 属性转成 text-align
+  body = wrapListItemSectionContent(body);
 
   const css = readTheme(themeName);
 

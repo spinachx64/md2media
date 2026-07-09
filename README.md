@@ -28,7 +28,7 @@ node build.mjs article.md --stdout
 node build.mjs --list
 ```
 
-默认会把渲染后的富文本复制到剪贴板，直接粘贴进公众号编辑器即可。
+默认会把渲染后的富文本复制到剪贴板，直接粘贴进公众号编辑器即可。macOS 走 `osascript`，Windows 走 PowerShell 的剪贴板 API，两者都会同时写入富文本和纯文本两份。其他系统请用 `--stdout` 输出 HTML，或用本地预览服务复制。
 
 常用参数：
 
@@ -60,6 +60,18 @@ writing/
 ```bash
 node serve.mjs --dir /path/to/articles
 ```
+
+## 平台支持
+
+| 平台 | 命令行一键复制 | 本地预览复制 |
+| --- | --- | --- |
+| macOS | ✅ 已验证（`osascript`） | ✅ |
+| Windows | ⚠️ 已实现待验证（PowerShell） | ✅ |
+| Linux 等 | ❌ 请用 `--stdout` | ✅ |
+
+本地预览的复制走浏览器 `navigator.clipboard`，与平台无关，各系统通用。
+
+命令行的一键复制目前只在 macOS 上实测通过。Windows 的实现走 PowerShell 的 `System.Windows.Forms.Clipboard`，把 HTML 包成 CF_HTML 格式写入剪贴板，代码逻辑和字节偏移已自测，但尚未在真实 Windows 环境验证粘贴效果。欢迎在 Windows 上跑一次 `node build.mjs 某篇.md` 后反馈是否能正常粘进公众号。
 
 ## 主题
 
