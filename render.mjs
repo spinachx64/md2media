@@ -21,6 +21,22 @@ export function listThemes() {
     .sort();
 }
 
+// 提取主题主色调：取 #nice h1 的 color 作为代表色，供预览页色块展示。
+// 拿不到就退回一个中性灰，保证前端一定有颜色可渲染。
+export function themeColor(name) {
+  try {
+    const css = readTheme(name);
+    const m = css.match(/#nice\s+h1\s*\{[^}]*?color:\s*(#[0-9a-fA-F]{3,8}|rg[ab]?\([^)]+\))/);
+    if (m) return m[1];
+  } catch {}
+  return '#888888';
+}
+
+// 列出所有主题及其主色调，供预览页色块平铺展示。
+export function listThemesWithColor() {
+  return listThemes().map((name) => ({ name, color: themeColor(name) }));
+}
+
 export function readTheme(name) {
   const file = path.join(THEMES_DIR, `${name}.css`);
   if (!fs.existsSync(file)) {
