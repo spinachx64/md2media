@@ -3,12 +3,20 @@
 这个目录放的是排版主题，**一套主题 = 一个 `.css` 文件**。文件名（去掉 `.css`）就是主题名，
 CLI 用 `-t 主题名` 指定，预览页下拉里也会自动列出来。
 
-目前内置四套：
+目前内置四套通用主题，以及由 `generate-seasonal-themes.mjs` 同步生成的 108 套年度主题：
 
 - `summer-breeze.css`：默认主题，夏日海风风格，清凉明亮，适合夏季长文 / 工具教程 / 产品更新。
 - `mint-terminal.css`：薄荷终端风格，适合 CLI / DevOps / 工具类文章。
 - `graphite-orange.css`：石墨橙风格，适合实践复盘 / 性能优化 / 工程总结。
 - `mdnice-classic.css`：仿 mdnice 经典风格，冷色调。
+
+年度主题以 36 个上、中、下旬人工色彩锚点为骨架，每个旬再细分为初、正、末三段。正段继续使用兼容名称 `seasonal-MM-PERIOD-SLUG.css`，新增过渡主题使用 `seasonal-MM-PERIOD-PHASE-SLUG.css`。未传 `-t/--theme` 时，CLI 会依据本地日期自动匹配约 3—4 天的切片。需要调整年度配色时，只编辑 `generate-seasonal-themes.mjs`，然后运行：
+
+```bash
+npm run generate:seasonal-themes
+```
+
+该命令会使用 OKLab 感知插值，同时更新 108 份 CSS、`seasonal-theme-registry.mjs` 和 `seasonal-palette-preview.html`，避免日期映射与主题文件漂移。
 
 ---
 

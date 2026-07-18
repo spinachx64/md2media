@@ -1,0 +1,34 @@
+/* seasonal-06-late-closing-emerald: 年度四季主题。由 generate-seasonal-themes.mjs 生成，请勿手工编辑。 */
+#nice { font-size:16px; color:#2F3F46; line-height:1.5; letter-spacing:0; word-spacing:0; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; word-break:break-word; }
+#nice p { margin:0; padding:8px 0; font-size:16px; color:#2F3F46; line-height:1.8; letter-spacing:.04em; }
+#nice h1 { margin:30px 0 15px; font-size:24px; font-weight:bold; text-align:center; color:#287A6F; line-height:1.5; }
+#nice h2 { margin:30px 0 15px; padding-left:12px; font-size:20px; font-weight:bold; color:#287A6F; border-left:4px solid #287A6F; line-height:1.5; }
+#nice h3 { margin:30px 0 15px; font-size:17px; font-weight:bold; color:#287A6F; line-height:1.5; }
+#nice h4 { margin:30px 0 15px; font-size:16px; font-weight:bold; color:#16323A; line-height:1.5; }
+#nice h5 { margin:30px 0 15px; font-size:15px; font-weight:bold; color:#16323A; line-height:1.5; }
+#nice h6 { margin:30px 0 15px; font-size:14px; font-weight:bold; color:#16323A; line-height:1.5; }
+#nice blockquote { margin:20px 0; padding:10px 20px; border-left:3px solid #1C7A88; background:#F1F7F8; color:#61747A; font-size:15px; }
+#nice blockquote p { margin:0; padding:8px 0; color:#61747A; }
+#nice blockquote p + p { margin-top:15px; }
+#nice ul, #nice ol { margin:8px 0; padding-left:25px; color:#2F3F46; }
+#nice li { margin:5px 0; line-height:1.8; letter-spacing:.04em; }
+#nice p code, #nice li code, #nice h2 code, #nice h3 code { margin:0 2px; padding:2px 6px; font-size:14px; color:#186056; background:#EAF2F1; border-radius:4px; font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace; }
+#nice pre { margin:20px 8px; padding:16px; overflow-x:auto; background:#183B43; border-radius:8px; font-size:13px; line-height:1.6; }
+#nice pre code { padding:0; color:#D8ECEE; background:transparent; font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace; }
+#nice table { margin:20px auto; border-collapse:collapse; font-size:14px; width:auto; }
+#nice th, #nice td { padding:8px 14px; border:1px solid #BFDADE; }
+#nice th { background:#E6F0F2; font-weight:bold; color:#16323A; }
+#nice a { color:#1C7A88; text-decoration:none; border-bottom:1px solid #1C7A88; }
+#nice strong { color:#186056; font-weight:bold; }
+#nice em { font-style:italic; color:#186056; }
+#nice del { text-decoration:line-through; color:#61747A; }
+#nice hr { margin:32px 0; border:none; border-top:1px solid #BFDADE; }
+#nice img { max-width:100%; border-radius:6px; display:block; margin:20px auto; }
+#nice .hljs-comment, #nice .hljs-quote { color:#8DA8AC; font-style:italic; }
+#nice .hljs-keyword, #nice .hljs-selector-tag { color:#8ED8E3; }
+#nice .hljs-string, #nice .hljs-attr { color:#A7D99B; }
+#nice .hljs-number, #nice .hljs-literal { color:#E5C889; }
+#nice .hljs-title, #nice .hljs-title.function_, #nice .hljs-section { color:#82C5ED; }
+#nice .hljs-type, #nice .hljs-class .hljs-title { color:#D8D58F; }
+#nice .hljs-variable, #nice .hljs-template-variable { color:#E6A4AD; }
+#nice .hljs-built_in, #nice .hljs-builtin-name { color:#8CD9CA; }

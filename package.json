@@ -24,7 +24,9 @@
   "scripts": {
     "build": "node build.mjs",
     "serve": "node serve.mjs",
-    "list": "node build.mjs --list"
+    "list": "node build.mjs --list",
+    "generate:seasonal-themes": "node themes/generate-seasonal-themes.mjs",
+    "test": "node --test"
   },
   "engines": {
     "node": ">=18"

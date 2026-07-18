@@ -11,15 +11,20 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { render, listThemes } from './render.mjs';
+import { resolveSeasonalTheme } from './themes/seasonal-theme-registry.mjs';
 
-function parseArgs(argv) {
-  const args = { _: [], theme: 'summer-breeze', stdout: false, list: false };
+export function parseArgs(argv) {
+  const args = { _: [], theme: undefined, stdout: false, list: false };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     switch (a) {
-      case '--theme': case '-t': args.theme = argv[++i]; break;
+      case '--theme': case '-t':
+        args.theme = argv[++i];
+        if (!args.theme || args.theme.startsWith('-')) throw new Error(`${a} 需要主题名称`);
+        break;
       case '--stdout': args.stdout = true; break;
       case '--copy': case '-c': break; // 兼容旧命令；复制现在是默认行为。
       case '--list': case '-l': args.list = true; break;
@@ -39,7 +44,7 @@ const HELP = `md2media — 本地 Markdown → 微信公众号 HTML 排版工具
   node build.mjs --list
 
 选项:
-  -t, --theme <名字>   指定主题（默认 summer-breeze）
+  -t, --theme <名字>   指定主题；未指定时按本地日期自动选择年度主题
   --stdout             输出到标准输出，不写入剪贴板
   -l, --list           列出所有可用主题
   -h, --help           显示帮助
@@ -48,6 +53,23 @@ const HELP = `md2media — 本地 Markdown → 微信公众号 HTML 排版工具
   node build.mjs ../mcp3.md
   node build.mjs ../mcp3.md --theme summer-breeze
 `;
+
+// 手动主题永远优先。日期只由 main 在一次构建启动时读取一次，避免跨午夜不一致。
+export function selectTheme(args, now = new Date(), availableThemes = listThemes()) {
+  if (args.theme) {
+    return { theme: args.theme, mode: 'manual', detail: '手动（--theme）' };
+  }
+  const resolved = resolveSeasonalTheme(now);
+  if (!availableThemes.includes(resolved.theme)) {
+    throw new Error(`自动主题缺少 CSS：${resolved.theme}（${resolved.month} 月${resolved.segmentLabel}，${resolved.startDay}—${resolved.endDay} 日）`);
+  }
+  return {
+    theme: resolved.theme,
+    mode: 'automatic',
+    detail: `自动（${resolved.month} 月${resolved.segmentLabel}，${resolved.startDay}—${resolved.endDay} 日）`,
+    resolved,
+  };
+}
 
 // 从渲染后的 HTML 里抽出纯文本，供剪贴板的 text/plain 那一份用。
 // 对应预览页的 $frame.innerText：块级元素之间要有换行，否则粘到记事本会连成一坨。
@@ -153,8 +175,14 @@ function copyHtmlToClipboardWindows(html) {
   return r.status === 0;
 }
 
-function main() {
-  const args = parseArgs(process.argv.slice(2));
+export function main() {
+  let args;
+  try {
+    args = parseArgs(process.argv.slice(2));
+  } catch (e) {
+    console.error(e.message);
+    process.exit(1);
+  }
 
   if (args.help) { console.log(HELP); return; }
 
@@ -169,10 +197,18 @@ function main() {
   if (!input) { console.error('缺少输入文件。\n'); console.log(HELP); process.exit(1); }
   if (!fs.existsSync(input)) { console.error(`找不到文件: ${input}`); process.exit(1); }
 
+  let selection;
+  try {
+    selection = selectTheme(args, new Date());
+  } catch (e) {
+    console.error(e.message);
+    process.exit(1);
+  }
+
   const markdown = fs.readFileSync(input, 'utf8');
   let html;
   try {
-    html = render(markdown, args.theme);
+    html = render(markdown, selection.theme);
   } catch (e) {
     console.error(e.message);
     process.exit(1);
@@ -191,11 +227,11 @@ function main() {
   }
 
   if (ok) {
-    console.log(`已复制到剪贴板（富文本）。\n主题: ${args.theme}\n可直接粘贴进公众号编辑器。`);
+    console.log(`已复制到剪贴板（富文本）。\n主题: ${selection.theme}\n选择方式: ${selection.detail}\n可直接粘贴进公众号编辑器。`);
   } else {
     console.error('复制失败。可加 --stdout 输出 HTML，或使用本地预览服务复制。');
     process.exit(1);
   }
 }
 
-main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();

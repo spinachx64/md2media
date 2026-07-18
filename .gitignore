@@ -4,6 +4,7 @@ node_modules/
 # Generated output
 *.html
 !palette-preview.html
+!themes/seasonal-palette-preview.html
 
 # Local environment
 .env
@@ -21,4 +22,3 @@ pnpm-debug.log*
 Thumbs.db
 .idea/
 .vscode/
-
